@@ -1,5 +1,6 @@
 package com.example.myapplication4;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,13 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
     private Ballview gameview;
 private Handler handler=new Handler();
-private final static long Interval =30;
-
+private
+final static long Interval =30;
+    MediaPlayer play;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         gameview = new Ballview(this);
         setContentView(gameview);
+        play= MediaPlayer.create(MainActivity.this,R.raw.gameplay);
+        play.start();
         //setContentView(R.layout.activity_main);
         Timer timer=new Timer();
         timer.schedule(new TimerTask() {
@@ -41,5 +45,10 @@ private final static long Interval =30;
             }
         } ,0,Interval);
 
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        play.release();
     }
 }

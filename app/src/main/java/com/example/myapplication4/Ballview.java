@@ -108,8 +108,8 @@ public class Ballview extends View
 
             //change screen every 200 points
             //if score is perfectly divisible by 200 , change screen
-            if(score % 20 == 0){
-                if((score/20)%2==0){
+            if(score % 200 == 0){
+                if((score/200)%2==0){
                     backgroundImage =BitmapFactory.decodeResource(getResources(),R.drawable.sky);
                 }
                 else{
