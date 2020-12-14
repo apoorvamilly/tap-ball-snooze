@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -107,8 +108,8 @@ public class Ballview extends View
 
             //change screen every 200 points
             //if score is perfectly divisible by 200 , change screen
-            if(score % 200 == 0){
-                if((score/200)%2==0){
+            if(score % 20 == 0){
+                if((score/20)%2==0){
                     backgroundImage =BitmapFactory.decodeResource(getResources(),R.drawable.sky);
                 }
                 else{
@@ -146,6 +147,7 @@ public class Ballview extends View
                 Intent gameoverIntent=new Intent(getContext(),GameOverActivity.class);
                 gameoverIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 getContext().startActivity(gameoverIntent);
+
             }
         }
 
