@@ -19,7 +19,6 @@
         android:background="@drawable/gameover"
         android:gravity="center_vertical"
         android:textColor="@color/colorPrimary"
-        android:text="Game over"
         android:textSize="80dp"
         android:textStyle="bold" />
 

@@ -24,7 +24,10 @@ public class Ballview extends View
 
     private int redX,redY,redSpeed=20;
     private Paint redPaint=new Paint();
-    private int score,lifeCounterofBall;
+
+    private int greenX, greenY, greenSpeed= 30;
+    private Paint greenPaint=new Paint();
+    private int score,lifeCounterofBall, yellowCounter=0, nightday=0;
 
 
     private int canvasWidth,canvasHeight;
@@ -40,7 +43,7 @@ public class Ballview extends View
     public Ballview(Context context) {
         super(context);
         ball[0]= BitmapFactory.decodeResource(getResources(),R.drawable.bolo);
-        ball[1]=BitmapFactory.decodeResource(getResources(),R.drawable.gameicon);
+        ball[1]=BitmapFactory.decodeResource(getResources(),R.drawable.fall1);
         backgroundImage =BitmapFactory.decodeResource(getResources(),R.drawable.sky);
 
         yellowPaint.setColor(Color.YELLOW);
@@ -49,13 +52,17 @@ public class Ballview extends View
         redPaint.setColor(Color.RED);
         redPaint.setAntiAlias(false);
 
+        greenPaint.setColor(Color.GREEN);
+        greenPaint.setAntiAlias(false);
+
+
         scorepaint.setColor(Color.BLACK);
         scorepaint.setTextSize(70);
         scorepaint.setTypeface(Typeface.DEFAULT_BOLD);
         scorepaint.setAntiAlias(true);
 
         life[0]=BitmapFactory.decodeResource(getResources(),R.drawable.fall);
-        life[1]=BitmapFactory.decodeResource(getResources(),R.drawable.gameicon);
+        life[1]=BitmapFactory.decodeResource(getResources(),R.drawable.die);
         ballY=500;
 
         score =0;
@@ -97,11 +104,28 @@ public class Ballview extends View
         if(hitballChecker(yellowX,yellowY))
         {
             score=score+10;
+
+            //change screen every 200 points
+            //if score is perfectly divisible by 200 , change screen
+            if(score % 200 == 0){
+                if((score/200)%2==0){
+                    backgroundImage =BitmapFactory.decodeResource(getResources(),R.drawable.sky);
+                }
+                else{
+                    backgroundImage =BitmapFactory.decodeResource(getResources(),R.drawable.night);
+                }
+
+
+            }
+
+            
+
             yellowX=yellowX-100;
         }
 
         if(yellowX<0)
         {
+            yellowCounter++;
             yellowX=canvasWidth+21;
             yellowY=(int)Math.floor(Math.random()*(maxballY-minballY)+minballY);
         }
@@ -132,6 +156,29 @@ public class Ballview extends View
         }
 
         canvas.drawCircle(redX,redY,50,redPaint);
+
+
+        greenX = greenX- greenSpeed;
+        if(hitballChecker(greenX,greenY))
+        {
+            greenX = -100;
+
+            if(lifeCounterofBall<3)
+            {
+                lifeCounterofBall++;
+            }
+
+        }
+
+        if(greenX<0 && yellowCounter==5)
+        {   yellowCounter=0;
+            greenX=canvasWidth+21;
+            greenY=(int)Math.floor(Math.random()*(maxballY-minballY)+minballY);
+            //            greenY=(int)Math.floor(Math.random()*(maxballY-minballY)+minballY);
+
+        }
+        canvas.drawCircle(greenX,greenY,20,greenPaint);
+
         canvas.drawText("Score:"+score,20,60,scorepaint);
         for(int i=0;i<3;i++)
         {

@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1E1717"
     tools:context=".SplashActivity">
 
     <TextView
         android:id="@+id/textview1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="TAPPY BALL GAME"
+        android:shadowColor="#0E0B0B"
+        android:text="TAP BALL GAME"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="34sp"
@@ -22,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview1"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="-573dp"
-        android:layout_marginRight="22dp"
+        android:layout_marginTop="-628dp"
+        android:layout_marginRight="-55dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ball" />
+        android:src="@drawable/gameicon" />
 
 
 </RelativeLayout>
